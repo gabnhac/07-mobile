@@ -1,7 +1,7 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { CustomModalScreen } from './src/components/CustomModalScreen/CustomModalScreen';
+import { CustomModalScreen } from './src/components/CustomModalScreen';
 
 const Tab = createBottomTabNavigator();
 
