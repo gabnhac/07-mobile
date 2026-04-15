@@ -6,6 +6,8 @@ import { Ionicons } from '@expo/vector-icons'; // Importando os ícones
 import { ModalTabRoutes } from './ModalTabRoutes';
 import { ListTabRoutes } from './ListTabRoutes';
 import { Welcome } from '../screens/welcome/Welcome';
+import LoginScreen from '../screens/login-screen/LoginScreen';
+import FormScreen from '../screens/form-screen/FormScreen';
 
 export function MainDrawerRoutes() {
     const { Navigator, Screen } = createDrawerNavigator();
@@ -52,6 +54,17 @@ export function MainDrawerRoutes() {
                     component={ListTabRoutes} 
                     options={{
                         title: 'Exemplos de Listas',
+                        drawerIcon: ({ color, size }) => (
+                            <Ionicons name="list-circle-outline" size={size} color={color} />
+                        )
+                    }}
+                />
+
+                <Screen 
+                    name="Form" 
+                    component={FormScreen} 
+                    options={{
+                        title: 'Cadastro de aluguel',
                         drawerIcon: ({ color, size }) => (
                             <Ionicons name="list-circle-outline" size={size} color={color} />
                         )
