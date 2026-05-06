@@ -4,7 +4,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Modal } from 'reac
 // Importando o deleteUser para a lógica de Rollback
 import { createUserWithEmailAndPassword, deleteUser } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../config/firebaseConfig';
+import { auth, db } from '../../config/firebaseCongif';
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState('');
@@ -71,6 +71,11 @@ export default function RegisterScreen({ navigation }) {
     }
   };
 
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  }
+
   const handleCloseModal = () => {
     setModalVisible(false);
     if (isSuccess) {
@@ -116,6 +121,9 @@ export default function RegisterScreen({ navigation }) {
 
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Cadastrar</Text>
+      </TouchableOpacity>
+       <TouchableOpacity style={[styles.button, {backgroundColor: "#dc3545"}]} onPress={handleGoBack}>
+        <Text style={styles.buttonText}>Voltar</Text>
       </TouchableOpacity>
 
       <Modal

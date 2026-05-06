@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../config/firebaseConfig';
+import {auth} from '../../config/firebaseCongif';
+import { AuthContext } from '../../../App';
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  // Estados para controlar o Modal de feedback
   const [modalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+
+  const {setUser} = useContext(AuthContext);
 
   const handleLogin = async () => {
     if (email === '' || password === '') {
@@ -20,9 +22,9 @@ export default function LoginScreen({ navigation }) {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigation.replace('Home'); 
+      // navigation.replace('Home'); 
+      setUser(auth.currentUser);
     } catch (error) {
-      // Tratamento de erros de login
       if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
         setModalMessage('Usuário ou senha incorretos. Verifique seus dados.');
       } else {
